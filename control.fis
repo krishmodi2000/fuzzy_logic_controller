@@ -1,0 +1,48 @@
+[System]
+Name='control'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=7
+AndMethod='prod'
+OrMethod='max'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Error'
+Range=[-1 1]
+NumMFs=5
+MF1='Value_Low':'trapmf',[0.2 0.5 1 1]
+MF2='Value_Med':'trimf',[-0.01 0 0.01]
+MF3='Value_High':'trapmf',[-1 -1 -0.5 -0.2]
+MF4='Value_Med_Low':'trimf',[0 0.2 0.4]
+MF5='Value_Med_High':'trimf',[-0.4 -0.2 -0]
+
+[Input2]
+Name='Change'
+Range=[-1 1]
+NumMFs=2
+MF1='Error_High_Negative':'trimf',[-1 -1 0]
+MF2='Error_High_Positive':'trimf',[0 1 1]
+
+[Output1]
+Name='Control'
+Range=[-30 30]
+NumMFs=5
+MF1='Decrease_High':'trimf',[-30 -25 -20]
+MF2='Increase_High':'trimf',[20 25 30]
+MF3='Decrease_Low':'trimf',[-15 -10 -5]
+MF4='Hold':'trimf',[-0.1 0 0.1]
+MF5='Increase_Low':'trimf',[5 10 15]
+
+[Rules]
+1 0, 2 (1) : 1
+3 0, 1 (1) : 1
+2 1, 3 (1) : 1
+2 2, 5 (1) : 1
+5 0, 3 (1) : 1
+4 0, 5 (1) : 1
+2 0, 4 (1) : 1
