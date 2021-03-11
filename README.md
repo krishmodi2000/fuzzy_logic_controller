@@ -23,7 +23,7 @@ One of the most important features of the dc motor is that its speed can be quit
 The concept of speed control is different from speed regulation. In speed regulation, the speed of the motor changes naturally whereas in speed control of a dc motor, the speed of the motor is changed manually by the operator or using some automatic control device, such as PI or PID controller.
 
 The speed (N) of the DC Motor is given as 
-`	`![](Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.001.png)
+`	`![](images/Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.001.png)
 
 Hence, I can see that speed can be controlled by changing-
 
@@ -55,11 +55,11 @@ it takes into consideration a number of input scenarios and maps it with the des
 
   --------------------------
 The standard model of the DC Motor is as shown below-
-`	`![](Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.002.png)
+`	`![](images/Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.002.png)
 
 So, based on the model, the parameters for the DC Motor we’ve used are-
 
-![](Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.003.png)
+![](images/Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.003.png)
 
 - **Modelling of the Fuzzy Logic Controller-**
 
@@ -69,7 +69,7 @@ So, based on the model, the parameters for the DC Motor we’ve used are-
 The rule base for the fuzzy controller that I are currently using was developed through an intuitive trial and error process. 
 
 
-![](Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.004.png)
+![](images/Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.004.png)
 
 1. Fuzzification-
 
@@ -94,24 +94,24 @@ There are many defuzzification methods but we’ve used the most commonly used o
 
 For discrete sets COG is called center of gravity for singletons (COGS) where the crisp control value is the abscissa of the center of gravity of the fuzzy set is calculated as follows:
 
-![](Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.005.png)
+![](images/Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.005.png)
 
 Where xi is a point in the universe of the conclusion (i=1, 2, 3…) and μc (xi) is the membership value of the resulting conclusion set. For continuous sets summations are replaced by integrals.
 
 # **MATLAB/Simulink Model-**
-![](Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.006.png)
+![](images/Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.006.png)
 
 1. ## **Step Input Block**
 The Step Input block provides a constant input to the system initially, 800 at 0 seconds and then 1450 at 5 seconds; this will check if the fuzzy logic controller is responsive to changes in input. Sample time is kept at 0.0001 to get a smoother curve.
 
-![](Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.007.png)
+![](images/Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.007.png)
 
 1. **Torque Step Input Block**
 
    ---------------------------
 Torque Step Input gives a back emf of some sorts to disrupt the output. This is done to check if the controller is responsive to any type of changes in the system.
 
-![](Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.008.png)
+![](images/Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.008.png)
 
 1. **Gain Blocks**
 
@@ -128,7 +128,7 @@ This calculates the rate of change in speed error and limits it between -2 and 2
 1. **Fuzzy Inference System (FIS):**
 
    ---------------------------------
-![](Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.009.png)
+![](images/Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.009.png)
 
 1. **Membership Functions of Inputs-**
 
@@ -141,7 +141,7 @@ It signifies the difference between input step response and the output speed.
 
 Value\_High and Value\_Low Member functions are trapezoidal while Value\_Med, Value\_Med\_High and Value\_Medium\_Low are triangular.
 
-![](Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.010.png)
+![](images/Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.010.png)
 
 - **Change:**
 
@@ -150,22 +150,22 @@ Derivative of error (i.e. change in error with respect to time).
 
 Error\_High\_Negative and Error\_High\_Positive show drastic changes in the error as the step response changes. This is useful when I have to decide if I need to increase or decrease the output or hold it in one place.
 
-![](Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.011.png)
+![](images/Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.011.png)
 
 1. **Membership Functions of Output-**
 
    -----------------------------------
 The Membership Functions here are all triangular. This determines what kind of output the fuzzy logic controller block will give in order to control the speed of DC Motor.
 
-![](Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.012.png)
+![](images/Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.012.png)
 # **Output-**
 - ## **Error, Change in Error vs. Time**
-![](Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.013.png)
+![](images/Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.013.png)
 - ## **Fuzzy Controller Output vs. Time**
-![](Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.013.png)
+![](images/Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.013.png)
 - ## **Step Response and Speed of DC Motor**
 
-**![](Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.014.png)**
+**![](images/Aspose.Words.6e40e44f-fce8-4c0f-92b9-9d70c4d112fe.014.png)**
 
 
 **We see the following trends in all the plots-**
